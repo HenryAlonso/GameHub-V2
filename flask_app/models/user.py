@@ -16,6 +16,7 @@ class User:
         self.description = data['description']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.games = [];
 
     @staticmethod
     def validate_user(cls, data):
@@ -64,12 +65,12 @@ class User:
     @classmethod
     def user_games(cls, data):
         query = '''
-        SELECT * FROM games
-        LEFT JOIN users ON games.user_id = users.id
-        WHERE games.user_id = %(id)s;
+        SELECT * FROM users
+        LEFT JOIN games ON games.user_id = users.id
+        WHERE users.id = %(id)s;
         '''
         results = connectToMySQL(cls.db).query_db(query, data)
-        games = []
+        user = cls(results[0])
         for row in results:
             user_data = {
                 'id': row['user_id'],
@@ -80,7 +81,7 @@ class User:
                 'created_at': row['created_at'],
                 'updated_at': row['updated_at']
             }
-            games = {
+            game_data = {
                 'id': row['id'],
                 'title': row['title'],
                 'platform': row['platform'],
@@ -92,8 +93,31 @@ class User:
                 'user_id': row['user_id'],
                 'user': user_data
             }
-            games.append(game)
-        return games
+            # user.games.append( game.Game(game_data) )
+        return user
+    #     @classmethod
+    # def get_user_with_trees(cls, data):
+    #     query = """
+    #             SELECT * FROM users
+    #             LEFT JOIN trees
+    #             ON users.id = trees.user_id
+    #             WHERE users.id = %(id)s;
+    #     """
+    #     results = connectToMySQL(cls.DB).query_db(query, data)
+    #     user = cls(results[0])
+    #     for row in results:
+    #         tree_data = {
+    #             "id": row['trees.id'],
+    #             "species": row['species'],
+    #             "location": row['location'],
+    #             "reason": row['reason'],
+    #             "date_planted": row['date_planted'],
+    #             "created_at": row['trees.created_at'],
+    #             "updated_at": row['trees.updated_at'],
+    #             "user_id" : row['user_id']
+    #         }
+    #         user.trees.append( tree.Tree(tree_data))
+    #     return user
 
     @classmethod
     def check_email(cls, data):
