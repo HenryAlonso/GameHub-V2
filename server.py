@@ -1,4 +1,4 @@
-from flask_app.controllers import users, game
+from flask_app.controllers import users, games
 from flask_app import app
 
 
