@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, request, session
-from trees_app import app
-from trees_app.models.user import User
-from trees_app.models.tree import Tree
+from flask_app import app
+from flask_app.models.user import User
+from flask_app.models.game import Game
 from flask_bcrypt import Bcrypt
 bcrypt = Bcrypt(app)
 
@@ -23,6 +23,7 @@ def create_user():
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
+        "username": request.form['username'],
         "email": request.form['email'],
         "password": bcrypt.generate_password_hash(request.form['password'])
     }
@@ -46,7 +47,7 @@ def account(id):
         "id": id
     }
     session['user_id'] = id
-    return render_template("account.html", user = User.get_user_with_trees(data))
+    return render_template("account.html", user = User.get_user_with_games(data))
 
 @app.route('/logout')
 def logout():

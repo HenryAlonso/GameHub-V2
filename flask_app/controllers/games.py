@@ -1,73 +1,75 @@
 from flask import render_template, redirect, request, session
-from trees_app import app
-from trees_app.models.user import User
-from trees_app.models.tree import Tree
+from flask_app import app
+from flask_app.models.user import User
+from flask_app.models.game import Game
 
 @app.route('/dashboard')
 def dashboard():
     if 'user_id' not in session:
         return redirect('/')
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("dashboard.html", user = user, trees = Tree.retrieve_all())
+    return render_template("dashboard.html", user = user, games = Game.retrieve_all())
 
-@app.route('/new/tree')
-def add_tree():
+@app.route('/new/game')
+def add_game():
     if 'user_id' not in session:
         return redirect('/')
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("trees_new.html", user = user)
+    return render_template("games_new.html", user = user)
 
 
-@app.route('/tree/edit/<int:id>')
-def edit_tree(id):
+@app.route('/game/edit/<int:id>')
+def edit_game(id):
     if 'user_id' not in session:
         return redirect('/')
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("trees_edit.html", user = user, tree = Tree.retrieve_by_id({"id": id}))
+    return render_template("games_edit.html", user = user, game = Game.retrieve_by_id({"id": id}))
 
 @app.route('/show/<int:id>')
-def show_tree(id):
+def show_game(id):
     if 'user_id' not in session:
         return redirect('/')
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("trees_info.html", user = user, tree = Tree.retrieve_by_id({"id": id}))
+    return render_template("games_info.html", user = user, game = Game.retrieve_by_id({"id": id}))
 
-@app.route('/new/tree/process', methods = ["POST"])
-def process_new_tree():
+@app.route('/new/game/process', methods = ["POST"])
+def process_new_game():
     if 'user_id' not in session:
         return redirect('/')
-    if not Tree.validate_tree_form(request.form):
-        return redirect('/new/tree')
+    if not Game.validate_game_form(request.form):
+        return redirect('/new/game')
     data = {
         'user_id': session['user_id'],
-        'species': request.form['species'],
-        'location': request.form['location'],
-        'reason': request.form['reason'],
-        'date_planted': request.form['date_planted'],
+        'title': request.form['title'],
+        'platform': request.form['platform'],
+        'genre': request.form['genre'],
+        'release_date': request.form['release_date'],
+        'description': request.form['description']
     }
-    Tree.new_tree(data)
+    Game.new_game(data)
     return redirect('/dashboard')
 
-@app.route('/tree/update/process/<int:id>', methods = ["POST"])
+@app.route('/game/update/process/<int:id>', methods = ["POST"])
 def process_update(id):
     if 'user_id' not in session:
         return redirect('/')
-    if not Tree.validate_tree_form(request.form):
-        return redirect(f'/tree/edit/{id}')
+    if not Game.validate_game_form(request.form):
+        return redirect(f'/game/edit/{id}')
     data = {
-        "id": id,
-        "species": request.form['species'],
-        "location": request.form['location'],
-        "reason": request.form['reason'],
-        "date_planted": request.form['date_planted']
+        'id': id,
+        'title': request.form['title'],
+        'platform': request.form['platform'],
+        'genre': request.form['genre'],
+        'release_date': request.form['release_date'],
+        'description': request.form['description']
     }
-    Tree.re_plant(data)
+    Game.edit_game(data)
     return redirect('/dashboard')
 
-@app.route('/tree/delete/<int:id>')
-def remove_tree(id):
+@app.route('/game/delete/<int:id>')
+def remove_game(id):
     if 'user_id' not in session:
         return redirect('/')
-    Tree.remove_tree({"id":id})
+    Game.remove_game({"id":id})
     user = User.get_user_by_id({"id": session['user_id']})
     return redirect(f'/user/account/{user.id}')

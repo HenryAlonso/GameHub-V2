@@ -81,7 +81,7 @@ class Game:
         return results
     
     @classmethod
-    def re_plant(cls, data):
+    def edit_game(cls, data):
         query = """
                 UPDATE games
                 # SET title = %(title)s, platform = %(platform)s, genre = %(genre)s, release_date = %(release_date)s, description = %(description)s, updated_at = NOW()
