@@ -3,7 +3,7 @@ from flask_app.models import user
 from flask import flash
 
 class Game:
-    DB = "arbotrary_pybelt"
+    DB = "gamehub_db"
 
     def __init__(self, data):
         self.id = data['id']

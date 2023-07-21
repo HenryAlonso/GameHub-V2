@@ -7,7 +7,7 @@ from flask_app import bcrypt
 EMAIL_REGEX =  re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
-    DB = "arbotrary_pybelt"
+    DB = "gamehub_db"
 
     def __init__(self, data):
         self.id = data['id']
