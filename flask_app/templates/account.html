@@ -10,44 +10,22 @@
     <title>{{ user.first_name }}'s Account</title>
 </head>
 <body>
-    <div class="container row justify-content-center mx-auto mt-2">
-        <!-- START HEADER -->
-            <div class="row align-middle">
-                <h2 class="col-6">Game Hub</h2>
-                <a class="col-3 text-end" href="/user/account/{{ user.id }}">My Trees</a>
-                <h3 class="col-3 welcome">Welcome, {{ user.first_name }}! </h3>
+    <div class="row align-items-center">
+        <h5 class="col-8">Wanna add a new game to your profle? Fill out the form below!</h5>
+        <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
+        <a class="col btn btn-outline-secondary logout" href="/logout" role="button">Logout</a>
+    </div>
+    <div class="col bg-light col-4">
+        <h2 class="text-success">Update Profile</h2>
+        <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">
+            <div class="form-group">
+            <!-- first name -->
+                <label for="username" UserName</label>
+                <input type="text" name="username" class="form-control" id="username" value="{{ user.username }}">
             </div>
-            <div class="row align-items-center">
-                <h5 class="col-8">A site to show off your favorite games!</h5>
-                <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
-                <a class="col btn btn-outline-secondary logout" href="/user/logout" role="button">Logout</a>
-            </div>
-        <!-- END HEADER -->
-        <h2 class="mt-5">Manage My Trees</h2>
-        <table class="table align-middle">
-            <thead>
-                <tr>
-                    <th scope="col">Species</th>
-                    <th scope="col">Date Planted</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for tree in trees %}
-                <tr>
-                    <td>{{ tree.species }}</td>
-                    <td>{{ tree.date_planted.strftime('%B %dth, %Y')}}</td>
-                    <td>
-                        <a href="/trees/edit/{{tree.id}}" class="btn btn-secondary">Edit</a> |
-                        <form action="/trees/destroy/{{tree.id}}" method="post">
-                            <input type="hidden" value="{{tree.id}}">
-                            <a href="/trees/destroy/{{tree.id}}" class="btn btn-danger">Delete</a>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+            
+            <button type="submit" class="btn btn-primary mb-2 bg-success">Update User Info</button>
+        </form>
     </div>
 </body>
 </html>

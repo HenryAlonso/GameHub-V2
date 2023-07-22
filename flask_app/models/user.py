@@ -86,6 +86,16 @@ class User:
             }
             user.games.append( game.Game(game_data))
         return user
+    
+    @classmethod
+    def edit_user(cls, data):
+        query="""UPDATE users
+                SET username = %(username)s
+                WHERE id = %(id)s
+                """
+        results = connectToMySQL(cls.DB).query_db(query, data)
+        print(results)
+        return results;
 
     
     @staticmethod
@@ -145,3 +155,4 @@ class User:
             flash("Invalid email/password", "login")
             return False
         return user
+    

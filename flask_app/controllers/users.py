@@ -39,6 +39,17 @@ def login_user():
     session['user_id'] = user.id
     return redirect('/dashboard')
 
+@app.route('/user/update/process/<int:id>', methods = ["POST"])
+def update_user(id) :
+    if 'user_id' not in session:
+        return redirect('/')
+    data = {
+        'id': id,
+        'username' : request.form['username']
+    }
+    User.edit_user(data)
+    return redirect('/dashboard')
+
 @app.route('/user/account/<int:id>')
 def account(id):
     if 'user_id' not in session:
@@ -47,7 +58,7 @@ def account(id):
         "id": id
     }
     session['user_id'] = id
-    return render_template("account.html", user = User.get_user_with_games(data))
+    return render_template("account.html", user = User.get_user_by_id(data))
 
 @app.route('/logout')
 def logout():
