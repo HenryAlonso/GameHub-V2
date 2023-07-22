@@ -4,68 +4,88 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <title>Arbortrary</title>
+    <title>Game Hub</title>
+    <!-- CSS ONLY -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-    <h1 class="mt-5 ms-5">Arbortrary</h1>
-    <hr>
-    <div class="d-flex justify-content-evenly mt-5">
-        <form action="/register" method="post" class="bg-dark text-light col-3 p-5">
-            <h2 class="text-primary">Register</h2>
-            {% with messages = get_flashed_messages(category_filter=['register']) %}
-                {% if messages %}
-                <div class="alert alert-danger">
-                    {% for message in messages %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            {% endwith %}
-            <div class="form-group">
-                <label for="first_name">First Name:</label>
-                <input type="text" name="first_name" id="first_name" class="form-control">
+    <h2>Game Hub</h2>
+    <div class="container-fluid">
+        <div class="row register justify-content-sm-center">
+<!-- <<< Register Column >>> -->
+            <div class="col bg-light col-4">
+                <h2 class="text-success">Register</h2>
+                <form action="/user/register/process" method="POST" class="text-dark">
+                    {% with messages = get_flashed_messages(category_filter=['register']) %}
+                        {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Please note:</strong>
+                                {% for message in messages %}
+                                <p>{{message}}</p>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+                    <div class="form-group">
+                    <!-- first name -->
+                        <label for="first_name" First Name</label>
+                        <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+                    </div>
+                    <!-- last name -->
+                    <div class="form-group">
+                        <label for="last_name">Last Name</label>
+                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+                    </div>
+                    <!-- user name -->
+                    <div class="form-group">
+                        <label for="last_name">Username</label>
+                        <input type="text" name="username" class="form-control" id="username" placeholder="username">
+                    </div>
+                    <!-- email address -->
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <!-- password -->
+                    <div class="form-group">
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm" class="sr-only">Confirm Password</label>
+                        <input type="password" name="confirm"  class="form-control" id="confirm" placeholder="Password">
+                    </div>
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary mb-2 bg-success">Create Account</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="last_name">Last Name:</label>
-                <input type="text" name="last_name" id="last_name" class="form-control">
+<!-- <<< Login Column >>> -->
+            <div class="col login bg-light col-4">
+                <form action="/user/login/process" method='POST' class="text-dark">
+                    <h2 class="text-warning">Login</h2>
+                    {% with messages = get_flashed_messages(category_filter=['login']) %}
+                        {% if messages %}
+                        <div class="alert alert-danger" role="alert">
+                            <strong>Please note:</strong>
+                                {% for message in messages %}
+                                <p>{{message}}</p>
+                                {% endfor %}
+                        </div>
+                        {% endif %}
+                    {% endwith %}
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password" name="password" class="sr-only">Password</label>
+                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2 bg-warning">Login</button>
+                </form>
             </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control">
-            </div>
-            <div class="form-group mb-2">
-                <label for="confirm">Confirm Password:</label>
-                <input type="password" name="confirm" id="confirm" class="form-control">
-            </div>
-            <input type="submit" value="Register" class="btn btn-primary">
-        </form>
-        <form action="/login" method="post" class="bg-dark text-light col-3 p-5">
-            <h2 class="text-success">Login</h2>
-            {% with messages = get_flashed_messages(category_filter=['login']) %}
-                {% if messages %}
-                <div class="alert alert-danger">
-                    {% for message in messages %}
-                        <p>{{message}}</p>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            {% endwith %}
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="text" name="email" id="email" class="form-control">
-            </div>
-            <div class="form-group mb-2">
-                <label for="password">Password:</label>
-                <input type="password" name="password" id="password" class="form-control">
-            </div>
-            <input type="submit" value="Login" class="btn btn-success">
-        </form>
+        </div>
     </div>
 </body>
 </html>
