@@ -16,7 +16,7 @@
 <!-- <<< Register Column >>> -->
             <div class="col bg-light col-4">
                 <h2 class="text-success">Register</h2>
-                <form action="/register" method="POST" class="text-dark">
+                <form action="/user/register/process" method="POST" class="text-dark">
                     {% with messages = get_flashed_messages(category_filter=['register']) %}
                         {% if messages %}
                         <div class="alert alert-danger" role="alert">
@@ -62,7 +62,7 @@
             </div>
 <!-- <<< Login Column >>> -->
             <div class="col login bg-light col-4">
-                <form action="/user/login" method='POST' class="text-dark">
+                <form action="/user/login/process" method='POST' class="text-dark">
                     <h2 class="text-warning">Login</h2>
                     {% with messages = get_flashed_messages(category_filter=['login']) %}
                         {% if messages %}

@@ -17,8 +17,8 @@
         </div>
         <div class="row align-items-center">
             <h5 class="col-8">A site to show off your favorite games</h5>
-            <a class="col btn btn-primary mr-3" href="/create" role="button">+ Add a Game</a>
-            <a class="col btn btn-outline-secondary logout" href="/user/logout" role="button">Logout</a>
+            <a class="col btn btn-primary mr-3" href="/new/game" role="button">+ Add a Game</a>
+            <a class="col btn btn-outline-secondary logout" href="/logout" role="button">Logout</a>
         </div>
         <h3 class="col-6">All Games</h3>
         <table class="table align-middle">
@@ -32,17 +32,17 @@
                 </tr>
             </thead>
             <tbody>
-                {% for tree in trees %}
+                {% for game in games %}
                 <tr>
-                    <td>{{ tree.species }}</td>
-                    <td>{{ tree.creator.first_name }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ game.title }}</td>
+                    <td>{{ game.platform }}</td>
+                    <td>{{ game.genre }}</td>
+                    <td>{{ game.creator.first_name }}</td>
                     <td>
-                        <a href="/trees/edit/{{tree.id}}" class="btn btn-secondary">Edit</a> |
-                        <form action="/trees/destroy/{{tree.id}}" method="post">
-                            <input type="hidden" value="{{tree.id}}">
-                            <a href="/trees/destroy/{{tree.id}}" class="btn btn-danger">Delete</a>
+                        <a href="/game/edit/{{game.id}}" class="btn btn-secondary">Edit</a> |
+                        <form action="/game/delete/{{game.id}}" method="post">
+                            <input type="hidden" value="{{game.id}}">
+                            <a href="/game/delete/{{game.id}}" class="btn btn-danger">Delete</a>
                         </form>
                     </td>
                 </tr>
@@ -58,7 +58,7 @@
                     <th scope="col">About Them</th>
                 </tr>
             </thead>
-            <tbody>
+            <!-- <tbody>
                 {% for tree in trees %}
                 <tr>
                     <td>{{ tree.species }}</td>
@@ -68,7 +68,7 @@
                     </td>
                 </tr>
                 {% endfor %}
-            </tbody>
+            </tbody> -->
         </table>
     </div>
 </body>

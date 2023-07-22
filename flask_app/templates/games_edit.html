@@ -33,7 +33,7 @@
                 {% endif %}
             {% endwith %}
         </div>
-            <form action="/trees/edit/process/{{tree.id}}" method="post" class="col-4 bg-light p-4 my-5 mx-auto text-success" >
+            <form action="/game/update/process/{{game.id}}" method="post" class="col-4 bg-light p-4 my-5 mx-auto text-success" >
                 {% with messages = get_flashed_messages() %}
                         {% if messages %}
                         <div class="alert alert-danger" role="alert">
@@ -46,22 +46,26 @@
                     {% endwith %}
                 <h2 class="text-center text-success">Edit Your Game</h2>
                 <div class="form-group">
-                    <label for="species">Title:</label>
-                    <input type="text" name="species" class="form-control" value="{{tree.species}}">
+                    <label for="title">Title:</label>
+                    <input type="text" name="title" class="form-control" value="{{game.title}}">
                 </div>
                 <div class="form-group">
-                    <label for="location">Platform:</label>
-                    <textarea name="location" class="form-control">{{tree.location}}</textarea>
+                    <label for="platform">Platform:</label>
+                    <input type="text" name="platform" class="form-control" value="{{game.platform}}">
                 </div>
                 <div class="form-group">
-                    <label for="reason">Genre:</label>
-                    <textarea name="reason" class="form-control">{{tree.reason}}</textarea>
+                    <label for="genre">Genre:</label>
+                    <input type="text" name="genre" class="form-control" value="{{game.genre}}">
                 </div>
                 <div class="form-group">
-                    <label for="date_planted">Release Date</label>
-                    <input type="date" name="date_planted" class="form-control" value="{{ tree.date_planted }}">
+                    <label for="release_date">Release Date</label>
+                    <input type="date" name="release_date" class="form-control" value="{{ game.release_date }}">
                 </div>
-                <input type="hidden" name="id" value="{{ tree.id }}">
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="textarea" name="description" class="form-control" value="{{game.description}}">
+                </div>
+                <input type="hidden" name="id" value="{{ game.id }}">
                 <input type="submit" value="Update Game Details" class="btn btn-success btn-outline-light">
         </form>
     </div>
