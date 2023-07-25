@@ -17,6 +17,7 @@ def login():
 
 @app.route('/user/register/process', methods = ["POST"])
 def create_user():
+    
     if not User.validate_user_form(request.form):
         session['user_data'] = request.form
         return redirect('/')
