@@ -35,23 +35,23 @@
                 <h2 class="text-center text-success">Add A Game</h2>
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" class="form-control">
+                    <input type="text" name="title" class="form-control" value="{{game.title}}">
                 </div>
                 <div class="form-group">
                     <label for="platform">Platform:</label>
-                    <input type="text" name="platform" class="form-control">
+                    <input type="text" name="platform" class="form-control" value="{{game.platform}}">
                 </div>
                 <div class="form-group">
                     <label for="genre">Genre:</label>
-                    <input type="text" name="genre" class="form-control">
+                    <input type="text" name="genre" class="form-control" value="{{game.genre}}">
                 </div>
                 <div class="form-group">
                     <label for="release_date">Release Date:</label>
-                    <input type="date" name="release_date" class="form-control">
+                    <input type="date" name="release_date" class="form-control" value="{{game.release_date}}">
                 </div>
                 <div class="form-group">
                     <label for="description">Description:</label>
-                    <input type="textarea" name="description" class="form-control">
+                    <input type="textarea" name="description" class="form-control" value="{{game.description}}">
                 </div>
                 <input type="hidden" name="user_id" value="{{ user_id }}">
                 <input type="submit" value="Add Game" class="btn btn-success btn-outline-light">

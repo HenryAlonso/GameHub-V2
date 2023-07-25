@@ -14,22 +14,21 @@
     <!-- START HEADER -->
         <div class="row align-middle">
             <h2 class="col-6">Game Hub</h2>
-            <a class="col-3 text-end" href="/user/account/{{ user.id }}">My Trees</a>
             <h3 class="col-3 welcome">Welcome, {{ user.username }}! </h3>
         </div>
         <div class="row align-items-center">
             <h5 class="col-8">A site to show off your favorite games!</h5>
             <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
-            <a class="col btn btn-outline-secondary logout" href="/user/logout" role="button">Logout</a>
+            <a class="col btn btn-outline-secondary logout" href="/logout" role="button">Logout</a>
         </div>
     <!-- END HEADER -->
         
     <div class="detail-wrapper mt-5">
-        <h2>Game Name</h2>
-        <h3 class='text-start'>{{ tree.species }} posted by: {{ tree.creator.first_name }} {{ tree.creator.last_name }}</h2>
-            <p><strong>Available to play on: </strong>{{ tree.reason }}</p> 
-            <p><strong>Game Genre: </strong>{{ tree.location }}</p>
-            <p><strong>Released on: </strong>{{ tree.date_planted.strftime('%B %dth, %Y')}}</p>
+        <h2>{{game.title}}</h2>
+        <h3 class='text-start'>Posted by: {{ game.creator.first_name }} {{ game.creator.last_name }}</h2>
+            <p><strong>Available to play on: </strong>{{ game.platform }}</p> 
+            <p><strong>Game Genre: </strong>{{ game.genre }}</p>
+            <p><strong>Released on: </strong>{{ game.release_date.strftime('%B %dth, %Y')}}</p>
     </div>
     </div>
 </body>

@@ -23,16 +23,6 @@
             <a class="col btn btn-outline-secondary logout" href="/user/logout" role="button">Logout</a>
         </div>
         <!-- END HEADER -->
-
-        <div>
-            {% with messages = get_flashed_messages() %}
-                {% if messages %}
-                    {% for message in messages %}
-                        <p class="alert alert-danger card invalid-feedback mx-0 mb-0 p-1 text-center">{{message}}</p>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-        </div>
             <form action="/game/update/process/{{game.id}}" method="post" class="col-4 bg-light p-4 my-5 mx-auto text-success" >
                 {% with messages = get_flashed_messages() %}
                         {% if messages %}

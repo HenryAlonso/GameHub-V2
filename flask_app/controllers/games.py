@@ -7,6 +7,8 @@ from flask_app.models.game import Game
 def dashboard():
     if 'user_id' not in session:
         return redirect('/')
+    if 'game_data' in session:
+        session.pop('game_data')
     user = User.get_user_by_id({"id": session['user_id']})
     return render_template("dashboard.html", user = user, games = Game.retrieve_all())
 
@@ -14,8 +16,10 @@ def dashboard():
 def add_game():
     if 'user_id' not in session:
         return redirect('/')
+    if 'game_data' not in session:
+        session['game_data'] = request.form
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("games_new.html", user = user)
+    return render_template("games_new.html", user = user, game=session['game_data'])
 
 
 @app.route('/game/edit/<int:id>')
@@ -37,6 +41,7 @@ def process_new_game():
     if 'user_id' not in session:
         return redirect('/')
     if not Game.validate_game_form(request.form):
+        session['game_data'] = request.form
         return redirect('/new/game')
     data = {
         'user_id': session['user_id'],

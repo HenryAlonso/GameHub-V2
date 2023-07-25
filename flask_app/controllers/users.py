@@ -13,14 +13,17 @@ def index():
 def login():
     if 'user_id' in session:
         return redirect('/dashboard')
-    return render_template("index.html")
+    if not session:
+        session['user_register_data'] = request.form
+        session['user_data'] = request.form
+    return render_template("index.html", user_register_data=session['user_register_data'], user_data=session['user_data'])
 
 @app.route('/user/register/process', methods = ["POST"])
 def create_user():
-    
-    if not User.validate_user_form(request.form):
-        session['user_data'] = request.form
+    if not User.validate_user_form(request.form) or 'user_id' not in session:
+        session['user_register_data'] = request.form
         return redirect('/')
+
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
@@ -34,10 +37,15 @@ def create_user():
 
 @app.route('/user/login/process', methods = ["POST"])
 def login_user():
+
     user = User.validate_user_login(request.form)
-    if not user:
+    if user:
+        session['user_id'] = user.id
+    
+    if not user or 'user_id' not in session:
+        session['user_data'] = request.form
         return redirect('/')
-    session['user_id'] = user.id
+    
     return redirect('/dashboard')
 
 @app.route('/user/update/process/<int:id>', methods = ["POST"])
@@ -63,6 +71,7 @@ def account(id):
 
 @app.route('/logout')
 def logout():
+    session.clear()
     if 'user_id' in session:
         session.pop('user_id')
     return redirect('/user/login')

@@ -34,16 +34,18 @@
             <tbody>
                 {% for game in games %}
                 <tr>
-                    <td>{{ game.title }}</td>
+                    <td><a href="/show/{{game.id}}">{{ game.title }}</a></td>
                     <td>{{ game.platform }}</td>
                     <td>{{ game.genre }}</td>
                     <td>{{ game.creator.first_name }}</td>
                     <td>
+                        {% if game.creator.id == user.id %}
                         <a href="/game/edit/{{game.id}}" class="btn btn-secondary">Edit</a> |
                         <form action="/game/delete/{{game.id}}" method="post">
                             <input type="hidden" value="{{game.id}}">
                             <a href="/game/delete/{{game.id}}" class="btn btn-danger">Delete</a>
                         </form>
+                        {% endif %}
                     </td>
                 </tr>
                 {% endfor %}
