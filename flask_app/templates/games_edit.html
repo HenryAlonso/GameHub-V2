@@ -11,19 +11,33 @@
 </head>
 <body>
     <div class="container row justify-content-center mx-auto mt-2">
-        <!-- START HEADER -->
-        <div class="row align-middle">
-            <h2 class="col-6">Game Hub</h2>
-            <a class="col-3 text-end" href="/create">My Games</a>
-            <h3 class="col-3 welcome">{{ user.first_name }}, edit _____ </h3>
-        </div>
-        <div class="row align-items-center">
-            <h5 class="col-8">Got something new you wanna add to this amazing game you added to your games list? Add it here!</h5>
-            <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
-            <a class="col btn btn-outline-secondary logout" href="/user/logout" role="button">Logout</a>
-        </div>
-        <!-- END HEADER -->
 
+<!-- HEADER START -->
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h3 class="welcome">{{ user.first_name }}, edit your game now.</h3>
+            </div>
+            <div class="col">
+                <img class="game-logo mx-auto d-block" src= "{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}" >
+            </div>
+
+            <div class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/create">My Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav" href="/logout" role="button">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<!-- HEADER END -->
         <div>
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
@@ -33,7 +47,7 @@
                 {% endif %}
             {% endwith %}
         </div>
-            <form action="/game/update/process/{{game.id}}" method="post" class="col-4 bg-light p-4 my-5 mx-auto text-success" >
+            <form action="/game/update/process/{{game.id}}" method="post" class="col-6 bg-light p-4 my-5 mx-auto text-success" >
                 {% with messages = get_flashed_messages() %}
                         {% if messages %}
                         <div class="alert alert-danger" role="alert">

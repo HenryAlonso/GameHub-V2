@@ -84,7 +84,7 @@ class Game:
     def edit_game(cls, data):
         query = """
                 UPDATE games
-                # SET title = %(title)s, platform = %(platform)s, genre = %(genre)s, release_date = %(release_date)s, description = %(description)s, updated_at = NOW()
+                    SET title = %(title)s, platform = %(platform)s, genre = %(genre)s, release_date = %(release_date)s, description = %(description)s, updated_at = NOW()
                 WHERE id = %(id)s;
         """
         results = connectToMySQL(cls.DB).query_db(query, data)
