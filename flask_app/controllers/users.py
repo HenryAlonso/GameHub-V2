@@ -70,7 +70,7 @@ def account(id):
     data = {
         "id": id
     }
-    session['user_id'] = id
+    
     return render_template("account.html", user = User.get_user_by_id(data))
 
 @app.route('/logout')
