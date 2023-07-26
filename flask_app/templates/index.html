@@ -30,31 +30,31 @@
                     <div class="form-group">
                     <!-- first name -->
                         <label for="first_name">First Name</label>
-                        <input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name" value="{{user_register_data.first_name}}">
+                        <input type="text" name="first_name" class="form-control" id="first_name" value="{{user_register_data.first_name}}">
                     </div>
                     <!-- last name -->
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name" value="{{user_register_data.last_name}}">
+                        <input type="text" name="last_name" class="form-control" id="last_name" value="{{user_register_data.last_name}}">
                     </div>
                     <!-- user name -->
                     <div class="form-group">
                         <label for="last_name">Username</label>
-                        <input type="text" name="username" class="form-control" id="username" placeholder="username" value="{{user_register_data.username}}">
+                        <input type="text" name="username" class="form-control" id="username" value="{{user_register_data.username}}">
                     </div>
                     <!-- email address -->
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="email" placeholder="name@example.com" value="{{user_register_data.email}}">
+                        <input type="email" name="email" class="form-control" id="email" value="{{user_register_data.email}}">
                     </div>
                     <!-- password -->
                     <div class="form-group">
                         <label for="password" class="sr-only">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="{{user_register_data.password}}">
+                        <input type="password" name="password" class="form-control" id="password" value="{{user_register_data.password}}">
                     </div>
                     <div class="form-group">
                         <label for="confirm" class="sr-only">Confirm Password</label>
-                        <input type="password" name="confirm"  class="form-control" id="confirm" placeholder="Confirm Password">
+                        <input type="password" name="confirm"  class="form-control" id="confirm">
                     </div>
                     <!-- Submit -->
                     <input type="submit" value="Create Account" class="btn btn-primary mb-2 bg-success">
@@ -76,11 +76,11 @@
                     {% endwith %}
                     <div class="form-group">
                         <label for="email">Email address</label>
-                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" value="{{user_data.email}}">
+                        <input type="email" name="email" class="form-control" id="password" value="{{user_data.email}}">
                     </div>
                     <div class="form-group">
                         <label for="password" name="password" class="sr-only">Password</label>
-                        <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" name="password" class="form-control" id="password">
                     </div>
                     <input type="submit" class="btn btn-primary mb-2 bg-warning" value="Login">
                 </form>

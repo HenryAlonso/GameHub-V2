@@ -19,9 +19,16 @@
         <h2 class="text-success">Update Profile</h2>
         <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">
             <div class="form-group">
-            <!-- first name -->
-                <label for="username" UserName</label>
+                <label for="username">UserName</label>
                 <input type="text" name="username" class="form-control" id="username" value="{{ user.username }}">
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="text" name="age" class="form-control" id="age" value="{{ user.age }}">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <input type="text" name="description" class="form-control" id="description" value="{{ user.description }}">
             </div>
             
             <button type="submit" class="btn btn-primary mb-2 bg-success">Update User Info</button>

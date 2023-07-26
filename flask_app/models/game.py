@@ -35,6 +35,8 @@ class Game:
                 "username" : row['username'],
                 "email": row['email'],
                 "password": "",
+                "age": row['age'],
+                "description": row['description'],
                 "created_at": row['users.created_at'],
                 "updated_at": row['users.updated_at']
             }
@@ -62,6 +64,8 @@ class Game:
             "username": result['username'],
             "email": result['email'],
             "password": "",
+            "age": result['age'],
+            "description": result['description'],
             "created_at": result['users.created_at'],
             "updated_at": result['users.updated_at']
         }

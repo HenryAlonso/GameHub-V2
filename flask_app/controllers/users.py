@@ -13,14 +13,16 @@ def index():
 def login():
     if 'user_id' in session:
         return redirect('/dashboard')
+    session.modified = True
+
     if not session:
         session['user_register_data'] = request.form
         session['user_data'] = request.form
-    return render_template("index.html", user_register_data=session['user_register_data'], user_data=session['user_data'])
+    return render_template("index.html", user_register_data = session.get('user_register_data'), user_data = session.get('user_data'))
 
 @app.route('/user/register/process', methods = ["POST"])
 def create_user():
-    if not User.validate_user_form(request.form) or 'user_id' not in session:
+    if not User.validate_user_form(request.form):
         session['user_register_data'] = request.form
         return redirect('/')
 
@@ -54,7 +56,9 @@ def update_user(id) :
         return redirect('/')
     data = {
         'id': id,
-        'username' : request.form['username']
+        'username' : request.form['username'],
+        'age' : request.form['age'],
+        'description' : request.form['description']
     }
     User.edit_user(data)
     return redirect('/dashboard')

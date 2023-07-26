@@ -16,8 +16,8 @@ class User:
         self.username = data['username']
         self.email = data['email']
         self.password = data['password']
-        # self.birthday = data['birthday']
-        # self.description = data['description']
+        self.age = data['age']
+        self.description = data['description']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.games = []
@@ -90,7 +90,7 @@ class User:
     @classmethod
     def edit_user(cls, data):
         query="""UPDATE users
-                SET username = %(username)s
+                SET username = %(username)s, age = %(age)s, description = %(description)s 
                 WHERE id = %(id)s
                 """
         results = connectToMySQL(cls.DB).query_db(query, data)

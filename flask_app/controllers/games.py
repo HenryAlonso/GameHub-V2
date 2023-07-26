@@ -10,7 +10,8 @@ def dashboard():
     if 'game_data' in session:
         session.pop('game_data')
     user = User.get_user_by_id({"id": session['user_id']})
-    return render_template("dashboard.html", user = user, games = Game.retrieve_all())
+    users = User.get_all()
+    return render_template("dashboard.html", user = user, games = Game.retrieve_all(), users = users)
 
 @app.route('/new/game')
 def add_game():

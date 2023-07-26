@@ -51,26 +51,24 @@
                 {% endfor %}
             </tbody>
         </table>
-        <h3 class="col-6">All Users</h3>
+        <h3 class="col-3">All Users</h3>
         <table class="table align-middle">
             <thead>
                 <tr>
                     <th scope="col">Username</th>
                     <th scope="col">Age</th>
-                    <th scope="col">About Them</th>
+                    <th scope="col">Description</th>
                 </tr>
             </thead>
-            <!-- <tbody>
-                {% for tree in trees %}
+            <tbody>
+                {% for user in users %}
                 <tr>
-                    <td>{{ tree.species }}</td>
-                    <td>{{ tree.creator.first_name }}</td>
-                    <td>
-                        <a href="/trees/{{tree.id}}" class="btn btn-success">Details</a>
-                    </td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ "Not provided" if user.age is none else user.age }}</td>
+                    <td>{{ "Not provided" if user.description is none else user.description }}</td>
                 </tr>
                 {% endfor %}
-            </tbody> -->
+            </tbody>
         </table>
     </div>
 </body>
