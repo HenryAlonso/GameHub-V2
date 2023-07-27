@@ -10,20 +10,27 @@
     <title>{{ user.first_name }}'s Account</title>
 </head>
 <body>
-    <div class="d-flex row align-items-center">
-        <h1 class="col-8 m-3 ms-5">{{user.username}}</h1>
-        <div class="col">
-            <ul class="nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout" role="button">Logout</a>
-                </li>
-            </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="welcome mt-5">{{ user.username }}'s Profile</h1>
+            </div>
+            <div class="col">
+                <img class="game-logo mx-auto d-block" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
+            </div>
+            <div class="col mt-5">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" role="button">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
     <div class="mb-5 p-5">

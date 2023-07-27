@@ -26,7 +26,7 @@ def add_game():
 @app.route('/game/edit/<int:id>')
 def edit_game(id):
     game = Game.retrieve_by_id({"id": id})
-    if id != session['user_id']:
+    if game.user_id != session['user_id']:
         return redirect('/')
 
     if 'user_id' not in session:
@@ -78,7 +78,8 @@ def process_update(id):
 
 @app.route('/game/delete/<int:id>')
 def remove_game(id):
-    if id != session['user_id']:
+    game = Game.retrieve_by_id({"id": id})
+    if game.user_id != session['user_id']:
         return redirect('/')
     if 'user_id' not in session:
         return redirect('/')
