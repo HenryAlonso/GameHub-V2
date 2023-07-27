@@ -71,11 +71,3 @@ def process_update(id):
     }
     Game.edit_game(data)
     return redirect('/dashboard')
-
-@app.route('/game/delete/<int:id>')
-def remove_game(id):
-    if 'user_id' not in session:
-        return redirect('/')
-    Game.remove_game({"id":id})
-    user = User.get_user_by_id({"id": session['user_id']})
-    return redirect(f'/user/account/{user.id}')
