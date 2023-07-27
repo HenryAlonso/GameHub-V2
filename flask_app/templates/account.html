@@ -15,11 +15,16 @@
             <div class="col">
                 <h1 class="welcome mt-5">{{ user.username }}'s Profile</h1>
             </div>
-            <div class="col">
+            <div class="col-3">
                 <img class="game-logo mx-auto d-block" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
             </div>
-            <div class="col mt-5">
+            <div class="col-5 mt-5 d-flex">
                 <ul class="nav justify-content-end">
+                    {% if user.id != session.user_id %}
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/user/account/{{ session.user_id }}" role="button">My Profile</a>
+                    </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
                     </li>
@@ -33,13 +38,50 @@
             </div>
         </div>
     </div>
-    <div class="mb-5 p-5">
+
+    <div class="mb-5 p-5 container">
         <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
         <h3>Age: {{ "Not provided" if user.age is none else user.age }} </h3>
         <p>{{"" if user.description is none else user.description}}</p>
     </div>
+
+    <div class="container list-container">
+        <h3 class="col-6">All Games posted by {{user.username}} </h3>
+        <table class="table table-striped align-middle table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Game Title</th>
+                    <th scope="col">Platform</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for game in user.games %}
+                <tr class="table-striped">
+                    <td><a href="/show/{{game.id}}">{{ game.title }}</a></td>
+                    <td>{{ game.platform }}</td>
+                    <td>{{ game.genre }}</td>
+                    <td>
+                        {{ "You cannot edit this post" if game.user_id != session.user_id }}
+                        {% if game.user_id == session.user_id %}
+                        <div class="d-flex gap-1">
+                            <a href="/game/edit/{{game.id}}" class="btn btn-secondary">Edit</a> |
+                            <form action="/game/delete/{{game.id}}" method="post">
+                                <input type="hidden" value="{{game.id}}">
+                                <a href="/game/delete/{{game.id}}" class="btn btn-danger">Delete</a>
+                            </form>
+                        </div>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
     {% if user.id == session.user_id %}
-    <div class="col bg-light col-4 mt-3 p-3 ms-5">
+    <div class="col bg-light col-4 mt-5 p-3 ms-5 mx-auto">
         <h2 class="text-success">Update Profile</h2>
         <h5 class="col-8">Here you can update your Profile</h5>
         <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">

@@ -75,10 +75,10 @@ class User:
         for row in results:
             game_data = {
                 "id": row['games.id'],
-                "title": row['games.title'],
-                "platform": row['games.platform'],
-                "genre": row['games.genre'],
-                "release_date": row['games.release_date'],
+                "title": row['title'],
+                "platform": row['platform'],
+                "genre": row['genre'],
+                "release_date": row['release_date'],
                 "description": row['games.description'],
                 "created_at": row['games.created_at'],
                 "updated_at": row['games.updated_at'],

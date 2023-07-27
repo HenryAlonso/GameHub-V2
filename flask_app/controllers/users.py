@@ -71,7 +71,7 @@ def account(id):
         "id": id
     }
     
-    return render_template("account.html", user = User.get_user_by_id(data))
+    return render_template("account.html", user = User.get_user_with_games(data))
 
 @app.route('/logout')
 def logout():
