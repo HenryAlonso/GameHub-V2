@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3 class="welcome">{{ user.first_name }}, edit your game now.</h3>
+                <h3 class="welcome">{{ user.username }}, edit your game now.</h3>
             </div>
             <div class="col">
                 <img class="game-logo mx-auto d-block" src= "{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}" >
@@ -24,14 +24,14 @@
 
             <div class="col">
                 <ul class="nav justify-content-end">
-                    <!-- <li class="nav-item">
-                        <a class="nav-link active" href="/create">My Games</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">My Profile</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav" href="/logout" role="button">Logout</a>
+                        <a class="nav-link" href="/logout" role="button">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -80,7 +80,7 @@
                     <input type="textarea" name="description" class="form-control" value="{{game.description}}">
                 </div>
                 <input type="hidden" name="id" value="{{ game.id }}">
-                <input type="submit" value="Update Game Details" class="btn btn-success btn-outline-light">
+                <input type="submit" value="Update Game Details" class="btn btn-success btn-outline-light mt-2">
         </form>
     </div>
 </body>

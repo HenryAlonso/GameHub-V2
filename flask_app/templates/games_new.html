@@ -15,21 +15,21 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <h3 class="welcome">Add a game, {{ user.first_name }}</h3>
+                <h3 class="welcome">Add a game, {{ user.username }}</h3>
             </div>
             <div class="col">
-                <img class="game-logo" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
+                <img class="game-logo mx-auto d-block" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
             </div>
             <div class="col">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">Edit Profile</a>
+                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav" href="/logout" role="button">Logout</a>
+                        <a class="nav-link" href="/logout" role="button">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -71,7 +71,7 @@
                     <input type="textarea" name="description" class="form-control" value="{{game.description}}">
                 </div>
                 <input type="hidden" name="user_id" value="{{ user_id }}">
-                <input type="submit" value="Add Game" class="btn btn-success btn-outline-light">
+                <input type="submit" value="Add Game" class="btn btn-success btn-outline-light mt-2">
             </form>
         </div>
     </div>

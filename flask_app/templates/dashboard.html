@@ -22,13 +22,13 @@
             <div class="col">
                 <ul class="nav justify-content-end">
                     <li class="nav-item">
-                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">Edit Profile</a>
+                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">My Profile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav" href="/logout" role="button">Logout</a>
+                        <a class="nav-link" href="/logout" role="button">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -57,11 +57,13 @@
                     <td><a href="/user/account/{{game.creator.id}}">{{ game.creator.username }}</a></td>
                     <td>
                         {% if game.creator.id == user.id %}
-                        <a href="/game/edit/{{game.id}}" class="btn btn-secondary">Edit</a> |
-                        <form action="/game/delete/{{game.id}}" method="post">
-                            <input type="hidden" value="{{game.id}}">
-                            <a href="/game/delete/{{game.id}}" class="btn btn-danger">Delete</a>
-                        </form>
+                        <div class="d-flex gap-1">
+                            <a href="/game/edit/{{game.id}}" class="btn btn-secondary">Edit</a> |
+                            <form action="/game/delete/{{game.id}}" method="post">
+                                <input type="hidden" value="{{game.id}}">
+                                <a href="/game/delete/{{game.id}}" class="btn btn-danger">Delete</a>
+                            </form>
+                        </div>
                         {% endif %}
                     </td>
                 </tr>

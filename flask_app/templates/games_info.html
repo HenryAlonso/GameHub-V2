@@ -10,27 +10,43 @@
     <title>Games View</title>
 </head>
 <body>
-    <div class="container row justify-content-center mx-auto mt-2">
     <!-- START HEADER -->
-        <div class="row align-middle">
-            <h2 class="col-6">Game Hub</h2>
-            <h3 class="col-3 welcome">Welcome, {{ user.username }}! </h3>
+    <div class="">
+        <div class="row">
+            <div class="col">
+                <h3 class="welcome m-2">A site to show off your favorite games!</h3>
+            </div>
+            <div class="col">
+                <img class="game-logo mx-auto d-block" src= "{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}" >
+            </div>
+
+            <div class="col">
+                <ul class="nav justify-content-end">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/user/account/{{ user.id }}" role="button">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout" role="button">Logout</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="row align-items-center">
-            <h5 class="col-8">A site to show off your favorite games!</h5>
-            <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
-            <a class="col btn btn-outline-secondary logout" href="/logout" role="button">Logout</a>
-        </div>
+    </div>
     <!-- END HEADER -->
         
-    <div class="detail-wrapper mt-5">
+    <div class="detail-wrapper mt-5 p-5">
         <h2>{{game.title}}</h2>
         <h3 class='text-start'>Posted by: {{ game.creator.first_name }} {{ game.creator.last_name }}</h2>
             <p><strong>Available to play on: </strong>{{ game.platform }}</p> 
             <p><strong>Game Genre: </strong>{{ game.genre }}</p>
             <p><strong>Released on: </strong>{{ game.release_date.strftime('%B %dth, %Y')}}</p>
             <p><strong>Game Description: </strong>{{ game.description }}</p>
-    </div>
     </div>
 </body>
 </html>

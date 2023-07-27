@@ -11,17 +11,28 @@
 </head>
 <body>
     <div class="d-flex row align-items-center">
-        <h1 class="col-8">{{user.username}}</h1>
-        <a class="col btn btn-primary mr-3" href="/dashboard" role="button">Dashboard</a>
-        <a class="col btn btn-outline-secondary logout" href="/logout" role="button">Logout</a>
+        <h1 class="col-8 m-3 ms-5">{{user.username}}</h1>
+        <div class="col">
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout" role="button">Logout</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div>
-        <h3>{{user.first_name}} {{user.last_name}}</h3>
+    <div class="mb-5 p-5">
+        <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
         <h3>Age: {{ "Not provided" if user.age is none else user.age }} </h3>
         <p>{{"" if user.description is none else user.description}}</p>
     </div>
     {% if user.id == session.user_id %}
-    <div class="col bg-light col-4">
+    <div class="col bg-light col-4 mt-3 p-3 ms-5">
         <h2 class="text-success">Update Profile</h2>
         <h5 class="col-8">Here you can update your Profile</h5>
         <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">
@@ -38,7 +49,7 @@
                 <input type="text" name="description" class="form-control" id="description" value="{{ user.description }}">
             </div>
             
-            <button type="submit" class="btn btn-primary mb-2 bg-success">Update User Info</button>
+            <button type="submit" class="btn btn-primary mb-2 mt-2 bg-success">Update User Info</button>
         </form>
     </div>
     {% endif %}
