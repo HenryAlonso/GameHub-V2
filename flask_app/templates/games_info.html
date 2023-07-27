@@ -42,7 +42,7 @@
         
     <div class="detail-wrapper mt-5 p-5">
         <h2>{{game.title}}</h2>
-        <h3 class='text-start'>Posted by: {{ game.creator.first_name }} {{ game.creator.last_name }}</h2>
+        <h3 class='text-start'>Posted by: {{ game.creator.username }}</h2>
             <p><strong>Available to play on: </strong>{{ game.platform }}</p> 
             <p><strong>Game Genre: </strong>{{ game.genre }}</p>
             <p><strong>Released on: </strong>{{ game.release_date.strftime('%B %dth, %Y')}}</p>
