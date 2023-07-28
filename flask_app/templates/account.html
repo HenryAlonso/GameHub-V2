@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
+        <div class="row d-flex justify-content-between">
             <div class="col">
                 <h1 class="welcome mt-5">{{ user.username }}'s Profile</h1>
             </div>
@@ -19,7 +19,7 @@
                 <img class="game-logo mx-auto d-block" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
             </div>
             <div class="col-5 mt-5 d-flex">
-                <ul class="nav justify-content-end">
+                <ul class="nav d-flex justify-content-end">
                     {% if user.id != session.user_id %}
                     <li class="nav-item">
                         <a class="nav-link active" href="/user/account/{{ session.user_id }}" role="button">My Profile</a>
