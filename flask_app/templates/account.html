@@ -10,36 +10,8 @@
     <title>{{ user.first_name }}'s Account</title>
 </head>
 <body>
-    <!-- <div class="container">
-        <div class="row d-flex justify-content-between">
-            <div class="col">
-                <h1 class="welcome mt-5">{{ user.username }}'s Profile</h1>
-            </div>
-            <div class="col-3">
-                <img class="game-logo mx-auto d-block" src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}">
-            </div>
-            <div class="col-5 mt-5 d-flex">
-                <ul class="nav d-flex justify-content-end">
-                    {% if user.id != session.user_id %}
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/user/account/{{ session.user_id }}" role="button">My Profile</a>
-                    </li>
-                    {% endif %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/new/game" role="button">+ Add a Game</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/dashboard" role="button">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/logout" role="button">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
         <!-- HEADER START -->
-        <div class="container">
+        <div class="container row justify-content-center mx-auto mt-2">
             <div class="row">
                 <div class="col-1">
                     <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
@@ -71,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
         <!-- HEADER END -->
 
     <div class="mb-5 p-5 container">
@@ -115,7 +87,7 @@
         </table>
         
         {% if user.id == session.user_id %}
-        <div class="col bg-light col-4 mt-5 p-3 ms-5 mx-auto">
+        <div class="col bg-light col-5 mt-5 p-3 ms-1 mx-auto">
         <h2 class="text-success">Update Profile</h2>
         <h5 class="col-8">Here you can update your Profile</h5>
         <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">
@@ -136,6 +108,7 @@
         </form>
     </div>
     {% endif %}
+    </div>
     </div>
 </body>
 </html>
