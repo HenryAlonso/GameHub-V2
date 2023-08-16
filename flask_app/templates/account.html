@@ -10,7 +10,7 @@
     <title>{{ user.first_name }}'s Account</title>
 </head>
 <body>
-    <div class="container">
+    <!-- <div class="container">
         <div class="row d-flex justify-content-between">
             <div class="col">
                 <h1 class="welcome mt-5">{{ user.username }}'s Profile</h1>
@@ -37,7 +37,42 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
+        <!-- HEADER START -->
+        <div class="container">
+            <div class="row">
+                <div class="col-1">
+                    <button class="btn" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+                        <img class="nav" src="{{ url_for('static', filename='/imgs/navigation.ico') }}" alt="Navigation">
+                    </button>
+                </div>
+                <div class="col">
+                    <img class="game-logo mx-auto d-block"
+                    src="{{url_for('static', filename='/imgs/GAMECODE-AI-CS6.png')}}" alt="GameHub Logo">
+                </div>
+                
+                <div class="col-1">
+                    <h3 class="welcome mt-5">Welcome, {{ user.username }}</h3>
+                </div>
+                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                    aria-labelledby="offcanvasExampleLabel">
+                    <div class="offcanvas-header">
+                        <h5 class="offcanvas-title" id="offcanvasExampleLabel">GameHub Home</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+                    <div class="offcanvas-body">
+                        <div class="dropdown mt-3">
+                            <ul class="list-group">
+                                <li class="list-group-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                                <li class="list-group-item"><a class="nav-link" href="/new/game">Add a Game</a></li>
+                                <li class="list-group-item"><a class="nav-link" href="/logout">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- HEADER END -->
 
     <div class="mb-5 p-5 container">
         <h3>Name: {{user.first_name}} {{user.last_name}}</h3>
@@ -78,10 +113,9 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
-
-    {% if user.id == session.user_id %}
-    <div class="col bg-light col-4 mt-5 p-3 ms-5 mx-auto">
+        
+        {% if user.id == session.user_id %}
+        <div class="col bg-light col-4 mt-5 p-3 ms-5 mx-auto">
         <h2 class="text-success">Update Profile</h2>
         <h5 class="col-8">Here you can update your Profile</h5>
         <form action="/user/update/process/{{ user.id }}" method="POST" class="text-dark">
@@ -102,5 +136,6 @@
         </form>
     </div>
     {% endif %}
+    </div>
 </body>
 </html>

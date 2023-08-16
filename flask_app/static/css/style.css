@@ -1,19 +1,14 @@
-/* .game-logo {
-    width: 150px !important;
-} */
-
-.list-container, {
-    margin-top: 3em;
-}
-
-/* .cntnr-bx {
-    margin-top: 250px;
-} */
 
 .container {
+    margin-top: 25px;
     width:100%;
 }
-
+.nav{
+    height: 50px;
+}
 .login {
     margin-left: 100px;
+}
+.list-group-item:hover{
+    background-color: rgb(228, 226, 226);
 }
